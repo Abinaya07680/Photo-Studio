@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>LensCraft Studio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #111;
+  color: #fff;
+  line-height: 1.6;
+}
+
+section {
+  padding: 80px 10%;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2.6rem;
+  letter-spacing: 2px;
+}
+
+/* ---------- HERO ---------- */
+.hero {
+  height: 100vh;
+  background: url('https://images.unsplash.com/photo-1499084732479-de2c02d45fc4') center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 4rem;
+}
+
+.hero p {
+  margin: 20px 0;
+  letter-spacing: 2px;
+}
+
+.hero button {
+  padding: 14px 32px;
+  margin: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: gold;
+  color: #000;
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+}
+
+/* ---------- PORTFOLIO ---------- */
+.portfolio-filters {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.portfolio-filters button {
+  background: none;
+  border: 1px solid gold;
+  color: gold;
+  padding: 10px 22px;
+  margin: 6px;
+  cursor: pointer;
+}
+
+.portfolio-filters button.active,
+.portfolio-filters button:hover {
+  background: gold;
+  color: #000;
+}
+
+/* Masonry Layout */
+.portfolio-grid {
+  columns: 3;
+  column-gap: 20px;
+}
+
+.portfolio-item {
+  position: relative;
+  margin-bottom: 20px;
+  break-inside: avoid;
+  cursor: pointer;
+}
+
+.portfolio-item img {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+}
+
+/* Hover Overlay */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: 0.4s;
+  border-radius: 10px;
+}
+
+.portfolio-item:hover .overlay {
+  opacity: 1;
+}
+
+.overlay span {
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  border-bottom: 2px solid gold;
+  padding-bottom: 6px;
+}
+
+/* ---------- LIGHTBOX ---------- */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+}
+
+/* ---------- BOOKING ---------- */
+form {
+  max-width: 600px;
+  margin: auto;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 14px;
+  margin: 10px 0;
+  border: none;
+}
+
+form button {
+  width: 100%;
+  background: gold;
+  color: #000;
+  padding: 14px;
+  border: none;
+  cursor: pointer;
+}
+
+/* ---------- ABOUT ---------- */
+.about {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.about img {
+  width: 300px;
+  border-radius: 10px;
+}
+
+/* ---------- TESTIMONIAL ---------- */
+.testimonial {
+  max-width: 700px;
+  margin: auto;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  background: #000;
+  text-align: center;
+  padding: 30px;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width: 900px) {
+  .portfolio-grid {
+    columns: 2;
+  }
+}
+
+@media(max-width: 600px) {
+  section {
+    padding: 60px 5%;
+  }
+  .portfolio-grid {
+    columns: 1;
+  }
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <h1>LensCraft Studio</h1>
+    <p>Capturing Moments That Matter</p>
+    <button class="btn-primary" onclick="scrollToSection('portfolio')">View Portfolio</button>
+    <button class="btn-secondary" onclick="scrollToSection('booking')">Book Session</button>
+  </div>
+</div>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+<h2>Our Portfolio</h2>
+
+<div class="portfolio-filters">
+  <button class="active" onclick="filterPortfolio('all', this)">All</button>
+  <button onclick="filterPortfolio('wedding', this)">Weddings</button>
+  <button onclick="filterPortfolio('portrait', this)">Portraits</button>
+  <button onclick="filterPortfolio('fashion', this)">Fashion</button>
+</div>
+
+<div class="portfolio-grid">
+  <div class="portfolio-item wedding">
+    <img src="https://images.unsplash.com/photo-1519741497674-611481863552">
+    <div class="overlay"><span>Wedding Moments</span></div>
+  </div>
+
+  <div class="portfolio-item portrait">
+    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e">
+    <div class="overlay"><span>Portrait Session</span></div>
+  </div>
+
+  <div class="portfolio-item fashion">
+    <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c">
+    <div class="overlay"><span>Fashion Editorial</span></div>
+  </div>
+
+  <div class="portfolio-item wedding">
+    <img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e">
+    <div class="overlay"><span>Luxury Wedding</span></div>
+  </div>
+
+  <div class="portfolio-item portrait">
+    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
+    <div class="overlay"><span>Creative Portrait</span></div>
+  </div>
+</div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" onclick="this.style.display='none'">
+  <img id="lightboxImg">
+</div>
+
+<!-- BOOKING -->
+<section id="booking">
+<h2>Book a Session</h2>
+
+<form>
+  <input type="text" placeholder="Full Name" required>
+  <input type="email" placeholder="Email" required>
+  <input type="tel" placeholder="Phone">
+  <select>
+    <option>Portrait</option>
+    <option>Wedding</option>
+    <option>Fashion</option>
+    <option>Event</option>
+  </select>
+  <input type="date">
+  <textarea rows="4" placeholder="Message"></textarea>
+  <button type="submit">Book Now</button>
+</form>
+</section>
+
+<!-- ABOUT -->
+<section>
+<h2>About Us</h2>
+<div class="about">
+  <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12">
+  <p>
+    LensCraft Studio is a professional photography studio specializing in
+    portraits, weddings, and creative editorial work. With over a decade of
+    experience, we transform moments into timeless visual stories.
+  </p>
+</div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section>
+<h2>Testimonials</h2>
+<div class="testimonial">
+  <p>“Absolutely stunning photos. Professional, creative, and unforgettable.”</p>
+  ⭐⭐⭐⭐⭐
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>📍 City Studio | 📧 contact@lenscraft.com | 📞 +123 456 789</p>
+  <p>© 2026 LensCraft Studio</p>
+</footer>
+
+<script>
+function scrollToSection(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+}
+
+function filterPortfolio(category, btn) {
+  document.querySelectorAll('.portfolio-filters button')
+    .forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  document.querySelectorAll('.portfolio-item').forEach(item => {
+    item.style.display =
+      category === 'all' || item.classList.contains(category)
+      ? 'block' : 'none';
+  });
+}
+
+document.querySelectorAll('.portfolio-item img').forEach(img => {
+  img.onclick = () => {
+    document.querySelector('.lightbox').style.display = 'flex';
+    document.getElementById('lightboxImg').src = img.src;
+  };
+});
+</script>
+
+</body>
+</html>
